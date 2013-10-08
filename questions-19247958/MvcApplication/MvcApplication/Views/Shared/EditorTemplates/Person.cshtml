@@ -1,0 +1,7 @@
+﻿@model MvcApplication.Models.Person
+@using (Html.BeginForm())
+{ 
+    @Html.EditorFor(x => x.Name)
+    @Html.EditorFor(x => x.Address)
+    <input type="submit" value="Save" />
+}
