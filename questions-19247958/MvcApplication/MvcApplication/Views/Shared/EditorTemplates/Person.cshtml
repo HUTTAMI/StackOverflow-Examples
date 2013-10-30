@@ -1,7 +1,16 @@
 ﻿@model MvcApplication.Models.Person
-@using (Html.BeginForm())
-{ 
-    @Html.EditorFor(x => x.Name)
-    @Html.EditorFor(x => x.Address)
-    <input type="submit" value="Save" />
+@using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    <fieldset>
+        <h2>Personal Details</h2>
+        <div class="control-group">
+            <label class="control-label">@Html.DisplayNameFor(x => x.Name)</label>
+            <div class="controls">
+                @Html.EditorFor(x => x.Name)
+                @Html.ValidationMessageFor(x => x.Name, String.Empty, new { @class = "help-block" })
+            </div>
+        </div>
+        @Html.EditorFor(x => x.Address)
+        <button class="btn btn-primary" type="submit">Save</button>
+    </fieldset>
 }

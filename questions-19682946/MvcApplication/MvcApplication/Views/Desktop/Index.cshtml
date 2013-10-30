@@ -1,0 +1,45 @@
+﻿@model MvcApplication.Models.Desktop.IndexVM
+@{
+    ViewBag.Title = "Index";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <button class="btn bt-default pull-right get-persons" data-loading-text="Loading...">Refresh People</button>
+        </div>
+        <div class="col-md-3 text-center persons">
+            @{ Html.RenderPartial("_PeoplePartial", Model.People); }
+        </div>
+        <div class="col-md-3 text-center places">
+            @{ Html.RenderPartial("_PlacesPartial", Model.Places); }
+        </div>
+        <div class="col-md-3">
+            <button class="btn bt-default get-places" data-loading-text="Loading...">Refresh Places</button>
+        </div>
+    </div>
+</div>
+@section scripts
+{
+    <script>
+        $(function () {
+            $(document).on('click', '.get-persons', function (e) {
+                var $btn = $(this).prop('disabled', !0);
+                $.ajax('@Url.Action("GetPersons", "Desktop")').done(function (html) {
+                        $('.persons').html(html);
+                    }).always(function(){
+                        $btn.prop('disabled', !1);
+                    });
+
+                e.preventDefault();
+            }).on('click', '.get-places', function (e) {
+                var $btn = $(this).prop('disabled', !0);
+                $.ajax('@Url.Action("GetPlaces", "Desktop")').done(function (html) {
+                    $('.places').html(html);
+                }).always(function () {
+                    $btn.prop('disabled', !1);
+                });
+                e.preventDefault();
+            });
+        });
+    </script>
+}

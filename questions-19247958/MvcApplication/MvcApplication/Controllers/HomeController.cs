@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using System.Web.Mvc;
 using MvcApplication.Models;
 
@@ -15,12 +17,7 @@ namespace MvcApplication.Controllers
             {
                 Address = new Address
                 {
-                    CityDropDown = new SelectListItem[]{
-                        new SelectListItem { Selected = true, Text = "Select one..." },
-                        new SelectListItem { Text = "Anywhere", Value = "Anywhere" },
-                        new SelectListItem { Text = "Somewhere", Value = "Somewhere" },
-                        new SelectListItem { Text = "Nowhere", Value = "Nowhere" }
-                    }
+                    StateDropDown = this.GetStates()
                 }
             };
             return View(model);
@@ -36,7 +33,27 @@ namespace MvcApplication.Controllers
                 sb.AppendFormat("Address: {0} {1}", model.Address.City, model.Address.Zip);
                 return Content(sb.ToString());
             }
+
+            model.Address.StateDropDown = this.GetStates();
             return View(model);
+        }
+
+        private IEnumerable<SelectListItem> GetStates()
+        {
+            yield return new SelectListItem { Value = String.Empty, Text = "Please select one...", Selected = true };
+            yield return new SelectListItem { Value = "AL", Text = "Alabama" };
+            yield return new SelectListItem { Value = "AK", Text = "Alaska" };
+            yield return new SelectListItem { Value = "AZ", Text = "Arizona" };
+            yield return new SelectListItem { Value = "AR", Text = "Arkansas" };
+            yield return new SelectListItem { Value = "CA", Text = "California" };
+            yield return new SelectListItem { Value = "CO", Text = "Colorodo" };
+            yield return new SelectListItem { Value = "CT", Text = "Connecticut" };
+            yield return new SelectListItem { Value = "DE", Text = "Delaware" };
+            yield return new SelectListItem { Value = "FL", Text = "Florida" };
+            yield return new SelectListItem { Value = "GA", Text = "Georgia" };
+            yield return new SelectListItem { Value = "HI", Text = "Hawaii" };
+            yield return new SelectListItem { Value = "ID", Text = "Idaho" };
+            yield return new SelectListItem { Value = "IL", Text = "Illinois" };
         }
     }
 }

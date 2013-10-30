@@ -1,0 +1,7 @@
+﻿@model IEnumerable<MvcApplication.Models.Shared.Place>
+<ul class="list-group">
+    @foreach (var place in Model)
+    {
+        <li class="list-group-item">@Html.DisplayFor(x => place.Name)</li>
+    }
+</ul>
