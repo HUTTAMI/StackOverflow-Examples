@@ -5,7 +5,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-3">
-            <button class="btn bt-default pull-right get-persons" data-loading-text="Loading...">Refresh People</button>
+            <button class="btn bt-default pull-right get-persons">Refresh People</button>
         </div>
         <div class="col-md-3 text-center persons">
             @{ Html.RenderPartial("_PeoplePartial", Model.People); }
@@ -14,7 +14,7 @@
             @{ Html.RenderPartial("_PlacesPartial", Model.Places); }
         </div>
         <div class="col-md-3">
-            <button class="btn bt-default get-places" data-loading-text="Loading...">Refresh Places</button>
+            <button class="btn bt-default get-places">Refresh Places</button>
         </div>
     </div>
 </div>
