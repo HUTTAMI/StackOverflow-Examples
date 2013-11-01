@@ -22,6 +22,8 @@
 {
     <script>
         $(function () {
+            $.ajaxSetup({ cache: false });
+        
             $(document).on('click', '.get-persons', function (e) {
                 var $btn = $(this).prop('disabled', !0);
                 $.ajax('@Url.Action("GetPersons", "Desktop")').done(function (html) {
