@@ -1,9 +1,9 @@
-ASP.NET MVC controller accept javascript object
+[ASP.NET MVC controller accept javascript object](http://stackoverflow.com/questions/24162865/asp-net-mvc-controller-accept-javascript-object)
 ===============================================
 
 ### Summary
 
-Demonstrates how to submit JSOn data to a controller & action using jQuery/AJAX request.
+Demonstrates how to submit JSON data to a controller & action using jQuery/AJAX request.
 
 ### Walk-through
 
