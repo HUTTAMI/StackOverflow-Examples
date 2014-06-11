@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = "Example";
+}
+
+<h2>@ViewBag.Title</h2>
+<h3>@ViewBag.Message</h3>
+
+<div class="row">
+    <div class="col-md-6">
+        <h2>Original JSON data</h2>
+        <pre id="json-code"></pre>
+        <p><a class="btn btn-default" href="#" id="json-submit">Pass to action &raquo;</a></p>
+    </div>
+    <div class="col-md-6">
+        <h2>Received Data</h2>
+        <p id="json-result"><i>Nothing to see yet, please click 'Pass to action &raquo;' above.</i></p>
+    </div>
+</div>
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(function () {
+            var json = { models: [{ "Id": null, "Start": "2014-06-11T12:17:52.452Z", "End": "2014-06-11T12:17:52.452Z", "Name": "test", "Status": "test" }] }
+
+            $('#json-code').text(JSON.stringify(json, null, 2));
+            $('#json-submit').click(function (e) {
+                var $this = $(this).addClass('btn-danger').attr('disabled', 'disabled');
+
+                $.ajax({
+                    url: '@Url.Action("Example", "Home")',
+                    type: 'POST',
+                    data: JSON.stringify(json),
+                    dataType: 'json',
+                    contentType: 'application/json; charset=utf-8'
+                }).done(function (response) {
+                    if (response.error) {
+                        $('#json-result')
+                        .empty().removeClass()
+                        .addClass('text-error').text(response.message);
+                    } else {
+                        $('#json-result')
+                            .empty().removeClass()
+                            .addClass('text-success')
+                            .append($('<pre>', { 'text': JSON.stringify(response, null, 2) }));
+                    }
+                }).fail(function () {
+                    $('#json-result')
+                        .empty().removeClass()
+                        .addClass('text-error').text('Error with request in general');
+                }).always(function () {
+                    $this.removeClass('btn-danger').removeAttr('disabled');
+                });
+
+                e.preventDefault();
+                return false;
+            });
+        });
+    </script>
+}
