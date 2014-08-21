@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{797DF978-F42E-4F96-9017-60C39068CB26}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MyCompany</RootNamespace>
+    <AssemblyName>MyCompany.SC72</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;SC72</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sitecore\Buckets\Util\UIFilterHelpers.cs" />
+    <Compile Include="Sitecore\ContentSearch\ContentSearchManager.cs" />
+    <Compile Include="Sitecore\ContentSearch\FooBarBazProvider\FooBarBazSearchContext.cs" />
+    <Compile Include="Sitecore\ContentSearch\IIndexable.cs" />
+    <Compile Include="Sitecore\ContentSearch\IProviderSearchContext.cs" />
+    <Compile Include="Sitecore\ContentSearch\ISearchResult.cs" />
+    <Compile Include="Sitecore\ContentSearch\Linq\Common\IExecutionContext.cs" />
+    <Compile Include="Sitecore\ContentSearch\SearchTypes\SitecoreUISearchResultItem.cs" />
+    <Compile Include="Sitecore\ContentSearch\SearchTypes\UISearchResult.cs" />
+    <Compile Include="Sitecore\ContentSearch\SitecoreIndexableItem.cs" />
+    <Compile Include="Sitecore\ContentSearch\Utilities\LinqHelper.cs" />
+    <Compile Include="Sitecore\ContentSearch\Utilities\SearchStringModel.cs" />
+    <Compile Include="Sitecore\Context.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Sitecore\Data\Database.cs" />
+    <Compile Include="Sitecore\Data\Items\Item.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Sitecore\ID.cs" />
+    <Compile Include="Sitecore\ItemIDs.cs" />
+    <Compile Include="Sitecore\Sites\SiteContext.cs" />
+    <Compile Include="Util.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Sitecore\README.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
