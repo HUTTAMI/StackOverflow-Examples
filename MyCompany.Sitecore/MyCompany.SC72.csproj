@@ -63,6 +63,7 @@
     <Compile Include="Sitecore\ItemIDs.cs" />
     <Compile Include="Sitecore\Sites\SiteContext.cs" />
     <Compile Include="Util.cs" />
+    <Compile Include="Util.SC72.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Sitecore\README.txt" />
