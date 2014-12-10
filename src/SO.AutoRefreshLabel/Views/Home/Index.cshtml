@@ -1,0 +1,74 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1><span id="update-me">Connecting...</span></h1>
+    <p class="lead">The above heading will change once there's new information to display.</p>
+</div>
+
+<div class="row">
+    <div class="page-header">
+        <h1>How's that done? <small>Read on...</small></h1>
+    </div>
+    <div class="col-md-4">
+        <h2>Step 1</h2>
+        <p>
+            Add SignalR (<code>Install-Package Microsoft.AspNet.SignalR</code>) and create
+            a hub we can use to send information to the client.
+        </p>
+        <ul class="list-group">
+            <li class="list-group-item"><code>~/Startup.cs</code> (Register route)</li>
+            <li class="list-group-item"><code>~/Hubs/SimpleHub.cs</code> (Define hub)</li>
+        </ul>
+        <p><a class="btn btn-default" href="http://www.signalr.net/">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Step 2</h2>
+        <p>
+            Setup a simple service using Quartz.NET that calls the SignalR hub when it
+            has new information.
+        </p>
+        <ul class="list-group">
+            <li class="list-group-item"><code>~/Jobs/SimpleJob.cs</code> (Job itself)</li>
+            <li class="list-group-item"><code>~/App_Start/QuartzConfig.cs</code> (Register the job)</li>
+        </ul>
+        <p><a class="btn btn-default" href="http://www.quartz-scheduler.net/">Learn more &raquo;</a></p>
+    </div>
+
+    <div class="col-md-4">
+        <h2>Step 3</h2>
+        <p>
+            Add a reference to SignalR's JavaScript library (<code>~/Scripts/jquery.signalr.2.1.2.ks</code>)
+            and the dynamically generated hubs (<code>~/signalr/hubs</code>) to your page, then bind to
+            the callback method you created.
+        </p>
+        <p>For more detail on this, view this page's source code.</p>
+        <p><a class="btn btn-default" href="view-source:@Request.Url.AbsoluteUri">Learn more &raquo;</a></p>
+    </div>
+</div>
+
+@section Scripts
+{
+    <!-- SignalR Library itself -->
+    @Scripts.Render("~/bundles/signalr")
+    <!-- This is a dynamically-generated library based on the Hubs you define in your project -->
+    <script src="~/signalr/hubs"></script>
+    <!-- Implementation -->
+    <script>
+        $(function () {
+            // This is the SimpleHub we made (~/Hubs/SimpleHub.cs)
+            var $hub = $.connection.SimpleHub;
+
+            // Here we bind to the "updateLabel" function we created
+            // and called in the ~/Jobs/SimpleJob.cs.
+            $hub.client.updateLabel = function (timeOfDay) {
+                // Update the HTML element
+                $('#update-me').text(timeOfDay);
+            }
+
+            // Start a connection to the server
+            $.connection.hub.start();
+        });
+    </script>
+}
